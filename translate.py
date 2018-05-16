@@ -109,18 +109,21 @@ class UserIsTooDumpError(BrainNotFoundError):
 
 
 def _main_(args):
-    word = args.word
-    lang = args.language
-    if lang not in ['th', 'en', 't', 'e']:
-        raise UserIsTooDumpError('Dude, you must enter language as one of (th, en, t, e)')
-    output = ''
-    if lang in ['en', 'e']:
-        for char in word:
-            output += lst[char]
-    else:
-        for char in word:
-            output += list(lst.keys())[list(lst.values()).index(char)]
-    print(output)
+    try:
+        word = args.word
+        lang = args.language
+        if lang not in ['th', 'en', 't', 'e']:
+            raise UserIsTooDumpError('Dude, you must enter language as one of (th, en, t, e)')
+        output = ''
+        if lang in ['en', 'e']:
+            for char in word:
+                output += lst[char]
+        else:
+            for char in word:
+                output += list(lst.keys())[list(lst.values()).index(char)]
+        print(output)
+    except:
+        raise UserIsTooDumpError('Dude, do something smarter')
 
 
 if __name__ == '__main__':
