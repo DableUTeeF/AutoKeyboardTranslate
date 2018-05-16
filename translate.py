@@ -127,9 +127,12 @@ def _main_(args):
 
 
 if __name__ == '__main__':
-    argparser = argparse.ArgumentParser(description='translate thai kedmani to')
-    argparser.add_argument('-w', '--word', help='word to translate')
-    argparser.add_argument('-l', '--language', help='input language(t or e)')
+    try:
+        argparser = argparse.ArgumentParser(description='translate thai kedmani to')
+        argparser.add_argument('-w', '--word', help='word to translate')
+        argparser.add_argument('-l', '--language', help='input language(t or e)')
 
-    args = argparser.parse_args()
-    _main_(args)
+        args = argparser.parse_args()
+        _main_(args)
+    except:
+        raise UserIsTooDumpError('Dude, do something smarter')
