@@ -118,9 +118,14 @@ def _main_(args):
         if lang in ['en', 'e']:
             for char in word:
                 output += lst[char]
+                if char in '1234567890+-/*.':
+                    output += '`' + char + '`'
         else:
             for char in word:
-                output += list(lst.keys())[list(lst.values()).index(char)]
+                if char in '1234567890+-/*.`':
+                    output += '`' + char + '`'
+                else:
+                    output += list(lst.keys())[list(lst.values()).index(char)]
         print(output)
     except:
         raise UserIsTooDumpError('Dude, do something smarter')
