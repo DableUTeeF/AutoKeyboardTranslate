@@ -112,17 +112,18 @@ def _main_(args):
     try:
         word = args.word
         lang = args.language
+        mode = args.mode
         if lang not in ['th', 'en', 't', 'e']:
             raise UserIsTooDumpError('Dude, you must enter language as one of (th, en, t, e)')
         output = ''
         if lang in ['en', 'e']:
             for char in word:
                 output += lst[char]
-                if char in '1234567890+-/*.':
+                if char in '1234567890+-/*.' and mode == 1:
                     output += '`' + char + '`'
         else:
             for char in word:
-                if char in '1234567890+-/*.`':
+                if char in '1234567890+-/*.`' and mode == 1:
                     output += '`' + char + '`'
                 else:
                     output += list(lst.keys())[list(lst.values()).index(char)]
@@ -136,6 +137,7 @@ if __name__ == '__main__':
         argparser = argparse.ArgumentParser(description='translate thai kedmani to')
         argparser.add_argument('-w', '--word', help='word to translate')
         argparser.add_argument('-l', '--language', help='input language(t or e)')
+        argparser.add_argument('-m', '--mode', help='weather show numpad usage or not')
 
         args = argparser.parse_args()
         _main_(args)
